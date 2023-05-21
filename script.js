@@ -69,7 +69,7 @@ fetch('productos.json')
         let p = document.createElement('p');
         p.classList.add('card-text');
         let p2 = document.createElement('p');
-        p.textContent = 'Nombre: ' + nombre;
+        p.textContent = nombre;
         p2.textContent = 'Edad: ' + edad;
         let imagen = document.createElement('img');
         imagen.src = foto;
