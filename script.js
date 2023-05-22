@@ -43,6 +43,7 @@ function encuestaUsuario(){
   }
 }
 
+encuestaUsuario();
 
 //encuestaUsuario();
 
