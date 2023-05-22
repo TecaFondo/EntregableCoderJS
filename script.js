@@ -44,7 +44,7 @@ function encuestaUsuario(){
 }
 
 
-encuestaUsuario();
+//encuestaUsuario();
 
 // Obtener el elemento donde se mostrarán los datos
 let personasContainer = document.getElementById('productos');

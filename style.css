@@ -211,8 +211,10 @@ a{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    padding-left: 0px!important;
 }
+
+
 
 .carta{
     margin: 0px !important;
@@ -257,4 +259,31 @@ a{
 
 .comprarComparador{
     border-radius: 30px;
+}
+
+
+/*responsive*/
+
+@media screen and (max-width: 1473px){
+    .notebook{
+        width: 30vw;
+    }
+    .air{
+        width: 30vw;
+    }
+    .carta{
+        height: 490px;
+    }
+    .product-device2{
+        right: -8%;
+        top: 10%;
+        width: 100;
+        height: 400px;  
+    }
+    .product-device{
+        right: 15%;
+        top: 20%;
+        width:130px;
+        height: 500px;  
+    }
 }
