@@ -1,51 +1,50 @@
-/*let nombre = prompt("¿Cuál es tu nombre?");
-
-alert(`Hola ${nombre}, bienvenido!`);
-console.log(`Hola ${nombre}, bienvenido!`);
-
-let num1 = parseInt(prompt("Ingrese un número"));
-let num2 = parseInt(prompt("Ingrese otro número"));
-
-alert(`La suma de los números es ${num1 + num2}`);
-console.log(`La suma de los números es ${num1 + num2}`);
-
-let historia1 = prompt("Ingrese una historia");
-let historia2 = prompt("Ingrese otra historia");
-
-console.log(`Ambas historias juntas serían: ${historia1} ${historia2}`);
-alert(`Ambas historias juntas serían: ${historia1} ${historia2}`);*/
-
-/*function calcularMundiales(anno_nac, anno_actual){
-    let mundiales = 0;
-    mundiales= Math.floor((anno_actual - anno_nac) / 4); //Se calcula la cantidad de mundiales vividos.
-
-    if((1938> anno_nac) || (anno_nac < 1949)){ //Se resta 1 a la cantidad de mundiales si el usuario no nació en el periodo de 1938 a 1946.
-        mundiales = mundiales - 1;
-    }
-    return mundiales;
+function  isValidEmail(correo){
+  let regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  if(regex.test(correo)){
+    return true;
+  }else{
+    alert("El correo electrónico no es válido");
+    return false;
+  }
 }
 
-function getEdad(){ 
-    let edad = 0;
-    let mundiales = 0;
-    let anno_nac = 0;
-    let anno_actual = 0;
-    while(anno_nac>2022){ //Se valida que el año de nacimiento sea válido.
-        anno_nac = parseInt(prompt("Ingresa un año de nacimiento válido:"));
-    }
-    anno_nac = prompt("Ingresa tu año de nacimiento:");
-    anno_actual = parseInt(new Date().getFullYear()); //Se obtiene el año actual.
-    edad = anno_actual - anno_nac; //Se calcula la edad.
-    mundiales = calcularMundiales(anno_nac, anno_actual);
+function encuestaUsuario(){
+  if(confirm("Hola, apreciamos tu opinión. ¿Desea contestar una encuesta con fin de mejorar la experiencia de usuario?")){
 
-    console.log(`Tienes ${edad} años y has vivido ${mundiales} mundiales.`);
-    return mundiales; //se retorna la edad.
+    while(isNaN(edad = prompt("¿Cuál es tu edad?")) || edad <= 0 || edad > 100){
+      alert("La edad debe ser un número entre 1 y 100");
+    };
+
+    while(isNaN(nombre = prompt("¿Cuál es su nombre?")) == false){
+      alert("El nombre no puede ser un número");
+      nombre = prompt("¿Cuál es su nombre?");
+    };
+
+    while(isValidEmail(correo = prompt("Ingresa tu correo electrónico"))==false);
+
+    while(isNaN(productoEsperado = prompt("¿Qué producto esperas encontrar en nuestra tienda?")) == false){
+      if(productoEsperado === ""){
+        alert("El producto no puede estar vacío");
+      }
+      else{
+        alert("El producto no puede ser un número");
+      }
+    };
+
+    datosUsuario = {
+      "edad": edad,
+      "correo": correo,
+      "productoEsperado": productoEsperado
+    };
+
+    console.log("Datos del usuario");
+    console.log(datosUsuario);
+    alert(`Gracias por tu tiempo ${nombre}`);
+  }
 }
-//console.log(getEdad()); //Se llama a la función getEdad() para que se ejecute.
-*/
 
 
-
+encuestaUsuario();
 
 // Obtener el elemento donde se mostrarán los datos
 let personasContainer = document.getElementById('productos');
