@@ -1,19 +1,28 @@
 {
   "personas": [
     {
-      "nombre": "Juan",
-      "edad": 25,
-      "img": "img/pc_1.jpeg"
+      "nombre": "NoteBook Gamer",
+      "precio": "$999.990",
+      "img": "img/notebook-gamer.png",
+      "pantalla": "14.1",
+      "cpu": "Intel Core i5",
+      "grafica": "Nvidia GeForce RTX 3050"
     },
     {
-      "nombre": "María",
-      "edad": 30,
-      "img": "img/pc_1.jpeg"
+      "nombre": "NoteBook Gamer Air",
+      "precio": "$1.199.990",
+      "img": "img/notebook-gamer-air.webp",
+      "pantalla": "13.6",
+      "cpu": "Intel Core i7",
+      "grafica": "Nvidia GeForce RTX 4060"
     },
     {
-      "nombre": "Pedro",
-      "edad": 35,
-      "img": "img/pc_1.jpeg"
+      "nombre": "NoteBook Gamer Pro",
+      "precio": "$1.999.990",
+      "img": "img/notebook-gamer-pro-1.webp",
+      "pantalla": "16.2",
+      "cpu": "Intel Core i9",
+      "grafica": "Nvidia GeForce RTX 4080"
     }
   ]
 }
