@@ -127,16 +127,21 @@ fetch('productos.json')
 
   window.onload = function() {
     let miModal = document.getElementById('encuestaModal');
+    let textoCuerpoModal = document.getElementById('textoCuerpoModal');
+    textoCuerpoModal.textContent = "¿Te gustaría contestar una encuesta para mejorar tu experiencia de usuario?";
     if (miModal) {
       miModal.classList.add('show');
       miModal.style.display = 'block';
     }
   };
 
+
   document.addEventListener('DOMContentLoaded', function() {
     let cerrarModalBtn = document.getElementById('cerrarModal');
     let miModal = document.getElementById('encuestaModal');
     let cerrarModalCruz = document.getElementById('cerrarModalCruz');
+    let textoCuerpoModal = document.getElementById('textoCuerpoModal');
+    let siguienteModal = document.getElementById('Siguiente');
 
     cerrarModalBtn.addEventListener('click', function() {
       miModal.classList.remove('show');
@@ -147,4 +152,41 @@ fetch('productos.json')
       miModal.classList.remove('show');
       miModal.style.display = 'none';
     });
+
+    siguienteModal.addEventListener('click', function() {
+      textoCuerpoModal.textContent = "¿Qué edad tienes?";
+      let edad = document.createElement('input');
+      edad.type = "number";
+      edad.id = "edad";
+      edad.classList.add('form-control');
+      edad.classList.add('form-control-sm');
+      edad.classList.add('inputModal');
+      edad.placeholder = "Ingresa tu edad";
+      textoCuerpoModal.appendChild(edad);
+      let nombre = document.createElement('input');
+      nombre.type = "text";
+      nombre.id = "nombre";
+      nombre.classList.add('form-control');
+      nombre.classList.add('form-control-sm');
+      nombre.classList.add('inputModal');
+      nombre.placeholder = "Ingresa tu nombre";
+      textoCuerpoModal.appendChild(nombre);
+      let correo = document.createElement('input');
+      correo.type = "email";
+      correo.id = "correo";
+      correo.classList.add('form-control');
+      correo.classList.add('form-control-sm');
+      correo.classList.add('inputModal');
+      correo.placeholder = "Ingresa tu correo electrónico";
+      textoCuerpoModal.appendChild(correo);
+      let productoEsperado = document.createElement('input');
+      productoEsperado.type = "text";
+      productoEsperado.id = "productoEsperado";
+      productoEsperado.classList.add('form-control');
+      productoEsperado.classList.add('form-control-sm');
+      productoEsperado.classList.add('inputModal');
+    });
+
+    
+
   });
