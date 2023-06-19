@@ -46,7 +46,7 @@ function encuestaUsuario(){
   }
 }
 
-encuestaUsuario();
+//encuestaUsuario();
 
 //encuestaUsuario();
 
@@ -123,26 +123,28 @@ fetch('productos.json')
   })
   .catch(function(error) {
     console.log('Error: ' + error);
+  }); 
+
+  window.onload = function() {
+    let miModal = document.getElementById('encuestaModal');
+    if (miModal) {
+      miModal.classList.add('show');
+      miModal.style.display = 'block';
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    let cerrarModalBtn = document.getElementById('cerrarModal');
+    let miModal = document.getElementById('encuestaModal');
+    let cerrarModalCruz = document.getElementById('cerrarModalCruz');
+
+    cerrarModalBtn.addEventListener('click', function() {
+      miModal.classList.remove('show');
+      miModal.style.display = 'none';
+    });
+
+    cerrarModalCruz.addEventListener('click', function() {
+      miModal.classList.remove('show');
+      miModal.style.display = 'none';
+    });
   });
-
-
-
-
-  //decalracion de funcion preguntar genero
-
-  function preguntarGenero(){
-    let genero = prompt("¿Qué géero de música electrónica es tu favorito?");
-    if (genero == "house" || genero == "tech house"){ //tienes que agregar los valores que faltan de la misma forma  || es un "or" y && es un "and"
-      console.log("Interesante elección") //esto se va a mostrar en la consola
-    }
-    else{ //este else va a ejecutarse siempre que no se cumpla la condición de arriba
-      console.log("No es un género válido"); 
-      return preguntarGenero(); //vuelve a preguntar el género (esto es una forma más elegante de hacer un loop)
-    }
-  }
-
-
-  //Puedes tener codigo acá arriba
-  preguntarGenero(); //esta linea llama a la funcion que acabamos de crear
-
-  // o puedes tener codigo acá abajo
