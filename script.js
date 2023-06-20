@@ -3,7 +3,7 @@ function  isValidEmail(correo){
   if(regex.test(correo)){
     return true;
   }else{
-    alert("El correo electrónico no es válido");
+    //lert("El correo electrónico no es válido");
     return false;
   }
 }
@@ -125,16 +125,127 @@ fetch('productos.json')
     console.log('Error: ' + error);
   }); 
 
-  window.onload = function() {
+  function validarEncuesta(respuestas){
+    let edad = respuestas[0];
+    let nombre = respuestas[1];
+    let correo = respuestas[2];
+    let productoEsperado = respuestas[3];
     let miModal = document.getElementById('encuestaModal');
-    let textoCuerpoModal = document.getElementById('textoCuerpoModal');
-    textoCuerpoModal.textContent = "¿Te gustaría contestar una encuesta para mejorar tu experiencia de usuario?";
-    if (miModal) {
-      miModal.classList.add('show');
-      miModal.style.display = 'block';
-    }
-  };
+    let flag = true;
 
+    if(edad != "" && edad != null && (edad >= 0 && edad <= 100)){
+      document.getElementById('edad').classList.add('border','border-success');
+      console.log(edad);
+    }
+    else{
+      document.getElementById('edad').classList.add('border','border-danger');
+      flag = false;
+    }
+    if(nombre != "" && nombre != null){
+      document.getElementById('nombre').classList.add('border','border-success');
+      console.log(nombre);
+    }
+    else{
+      document.getElementById('nombre').classList.add('border','border-danger');
+      flag = false;
+    }
+    if(isValidEmail(correo)!=false){
+      document.getElementById('correo').classList.add('border','border-success');
+      console.log(correo);
+    }
+    else{
+      document.getElementById('correo').classList.add('border','border-danger');
+      flag = false;
+    }
+    if(productoEsperado != "" && productoEsperado != null){
+      document.getElementById('productoEsperado').classList.add('border','border-success');
+      console.log(productoEsperado);
+    }
+    else{
+      document.getElementById('productoEsperado').classList.add('border','border-danger');
+      flag = false;
+    }
+    if (flag == true){
+      miModal.classList.remove('show');
+      miModal.style.display = 'none';
+
+      datosUsuario = {
+        "edad": edad,
+        "correo": correo,
+        "productoEsperado": productoEsperado,
+        "nombre": nombre,
+      };
+      console.log(datosUsuario);
+      localStorage.setItem("datosUsuario", JSON.stringify(datosUsuario));
+    }
+  }
+
+  
+  function preguntas(){
+    let miModal = document.getElementById('encuestaModal');
+    let cerrarModalCruz = document.getElementById('cerrarModalCruz');
+    let textoCuerpoModal = document.getElementById('textoCuerpoModal');
+    let siguienteModal = document.getElementById('Siguiente') || document.getElementById('enviar');
+
+    textoCuerpoModal.textContent = "¿Qué edad tienes?";
+    let edad = document.createElement('input');
+    edad.type = "number";
+    edad.id = "edad";
+    edad.classList.add('form-control');
+    edad.classList.add('form-control-sm');
+    edad.classList.add('inputModal');
+    edad.placeholder = "Ingresa tu edad";
+    textoCuerpoModal.appendChild(edad);
+    let textocuerpo2 = document.createElement('p');
+    textocuerpo2.textContent = "¿Cuál es tu nombre?";
+    let nombre = document.createElement('input');
+    nombre.type = "text";
+    nombre.id = "nombre";
+    nombre.classList.add('form-control');
+    nombre.classList.add('form-control-sm');
+    nombre.classList.add('inputModal');
+    nombre.placeholder = "Ingresa tu nombre";
+    let textocuerpo3 = document.createElement('p');
+    textocuerpo3.textContent = "¿Cuál es tu correo electrónico?";
+    textoCuerpoModal.appendChild(textocuerpo2);
+    textoCuerpoModal.appendChild(nombre);
+    let correo = document.createElement('input');
+    correo.type = "email";
+    correo.id = "correo";
+    correo.classList.add('form-control');
+    correo.classList.add('form-control-sm');
+    correo.classList.add('inputModal');
+    correo.placeholder = "Ingresa tu correo electrónico";
+    textoCuerpoModal.appendChild(textocuerpo3);
+    textoCuerpoModal.appendChild(correo);
+    let textocuerpo4 = document.createElement('p');
+    textocuerpo4.textContent = "¿Qué producto esperas encontrar en nuestra tienda?";
+    textoCuerpoModal.appendChild(textocuerpo4);
+    let productoEsperado = document.createElement('input');
+    productoEsperado.type = "text";
+    productoEsperado.id = "productoEsperado";
+    productoEsperado.classList.add('form-control');
+    productoEsperado.classList.add('form-control-sm');
+    productoEsperado.classList.add('inputModal');
+    productoEsperado.placeholder = "¿Qué producto esperas encontrar en nuestra tienda?";
+    textoCuerpoModal.appendChild(productoEsperado);
+    siguienteModal.textContent = 'Enviar';
+    siguienteModal.id = 'enviar';
+
+    //obtener respuestas desde campos de texto y guardarlas en un arreglo
+
+    siguienteModal.addEventListener('click', function() {
+      let respuestas = [];
+      respuestas.push(edad.value);
+      respuestas.push(nombre.value);
+      respuestas.push(correo.value);
+      respuestas.push(productoEsperado.value);
+      //console.log(respuestas);
+      validarEncuesta(respuestas);
+    
+  }
+  )};
+  
 
   document.addEventListener('DOMContentLoaded', function() {
     let cerrarModalBtn = document.getElementById('cerrarModal');
@@ -154,39 +265,26 @@ fetch('productos.json')
     });
 
     siguienteModal.addEventListener('click', function() {
-      textoCuerpoModal.textContent = "¿Qué edad tienes?";
-      let edad = document.createElement('input');
-      edad.type = "number";
-      edad.id = "edad";
-      edad.classList.add('form-control');
-      edad.classList.add('form-control-sm');
-      edad.classList.add('inputModal');
-      edad.placeholder = "Ingresa tu edad";
-      textoCuerpoModal.appendChild(edad);
-      let nombre = document.createElement('input');
-      nombre.type = "text";
-      nombre.id = "nombre";
-      nombre.classList.add('form-control');
-      nombre.classList.add('form-control-sm');
-      nombre.classList.add('inputModal');
-      nombre.placeholder = "Ingresa tu nombre";
-      textoCuerpoModal.appendChild(nombre);
-      let correo = document.createElement('input');
-      correo.type = "email";
-      correo.id = "correo";
-      correo.classList.add('form-control');
-      correo.classList.add('form-control-sm');
-      correo.classList.add('inputModal');
-      correo.placeholder = "Ingresa tu correo electrónico";
-      textoCuerpoModal.appendChild(correo);
-      let productoEsperado = document.createElement('input');
-      productoEsperado.type = "text";
-      productoEsperado.id = "productoEsperado";
-      productoEsperado.classList.add('form-control');
-      productoEsperado.classList.add('form-control-sm');
-      productoEsperado.classList.add('inputModal');
+      respuestas=preguntas();
     });
-
-    
+  
 
   });
+
+  
+
+  window.onload = function() {
+
+    let miModal = document.getElementById('encuestaModal');
+    let textoCuerpoModal = document.getElementById('textoCuerpoModal');
+    textoCuerpoModal.textContent = "¿Te gustaría contestar una encuesta para mejorar tu experiencia de usuario?";
+    if (miModal) {
+      miModal.classList.add('show');
+      miModal.style.display = 'block';
+    }
+    
+  };
+
+  
+
+  
