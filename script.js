@@ -241,6 +241,7 @@ fetch('productos.json')
       respuestas.push(correo.value);
       respuestas.push(productoEsperado.value);
       //console.log(respuestas);
+
       validarEncuesta(respuestas);
     
   }
