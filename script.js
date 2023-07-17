@@ -8,6 +8,7 @@ function  isValidEmail(correo){
   }
 }
 
+/*
 function encuestaUsuario(){
   if(confirm("Hola, apreciamos tu opinión. ¿Desea contestar una encuesta con fin de mejorar la experiencia de usuario?")){
 
@@ -44,16 +45,17 @@ function encuestaUsuario(){
     console.log(datosUsuario);
     alert(`Gracias por tu tiempo ${nombre}`);
   }
-}
+}*/
 
 //encuestaUsuario();
 
 //encuestaUsuario();
+
 
 // Obtener el elemento donde se mostrarán los datos
 let personasContainer = document.getElementById('productos');
 
-// Cargar los datos del archivo JSON
+// Cargar los datos del archivo JSON en index.html
 fetch('productos.json')
   .then(function(response) {
     return response.json();
@@ -105,7 +107,7 @@ fetch('productos.json')
         prodProc.textContent = procesador;
         prodCpu.textContent = cpu;
         prodGraf.textContent = grafica;
-        boton.textContent = "Comprar";
+        boton.textContent = "Comparar";
 
         // Agrega los elementos al contenedor
         personasContainer.appendChild(card);
@@ -273,18 +275,20 @@ fetch('productos.json')
   });
 
   
-
-  window.onload = function() {
-
-    let miModal = document.getElementById('encuestaModal');
-    let textoCuerpoModal = document.getElementById('textoCuerpoModal');
-    textoCuerpoModal.textContent = "¿Te gustaría contestar una encuesta para mejorar tu experiencia de usuario?";
-    if (miModal) {
-      miModal.classList.add('show');
-      miModal.style.display = 'block';
-    }
-    
-  };
+  if(localStorage.getItem("encuesta") == null){
+    window.onload = function() {
+      let miModal = document.getElementById('encuestaModal');
+      let textoCuerpoModal = document.getElementById('textoCuerpoModal');
+      textoCuerpoModal.textContent = "¿Te gustaría contestar una encuesta para mejorar tu experiencia de usuario?";
+      localStorage.setItem("encuesta", "true");
+      if (miModal) {
+        miModal.classList.add('show');
+        miModal.style.display = 'block';
+      }
+      
+    };
+  }
+  
 
   
 
