@@ -1,12 +1,13 @@
 {
-  "personas": [
+  "productos": [
     {
       "nombre": "NoteBook Gamer",
       "precio": "$999.990",
       "img": "img/notebook-gamer.png",
       "pantalla": "14.1",
       "cpu": "Intel Core i5",
-      "grafica": "Nvidia GeForce RTX 3050"
+      "grafica": "Nvidia GeForce RTX 3050",
+      "codigo": "1"
     },
     {
       "nombre": "NoteBook Gamer Air",
@@ -14,7 +15,8 @@
       "img": "img/notebook-gamer-air.webp",
       "pantalla": "13.6",
       "cpu": "Intel Core i7",
-      "grafica": "Nvidia GeForce RTX 4060"
+      "grafica": "Nvidia GeForce RTX 4060",
+      "codigo": "2"
     },
     {
       "nombre": "NoteBook Gamer Pro",
@@ -22,7 +24,8 @@
       "img": "img/notebook-gamer-pro-1.webp",
       "pantalla": "16.2",
       "cpu": "Intel Core i9",
-      "grafica": "Nvidia GeForce RTX 4080"
+      "grafica": "Nvidia GeForce RTX 4080",
+      "codigo": "3"
     }
   ]
 }

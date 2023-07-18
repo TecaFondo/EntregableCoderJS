@@ -53,7 +53,7 @@ function encuestaUsuario(){
 
 
 // Obtener el elemento donde se mostrarán los datos
-let personasContainer = document.getElementById('productos');
+let productosContainer = document.getElementById('productos');
 
 // Cargar los datos del archivo JSON en index.html
 fetch('productos.json')
@@ -61,17 +61,18 @@ fetch('productos.json')
     return response.json();
   })
   .then(function(data) {
-    let personas = data.personas;
+    let productos = data.productos;
 
-    // Recorrer cada persona y agregarla al HTML
-    personas.forEach(function(persona) {
-        let nombre = persona.nombre;
-        let precio = persona.precio;
-        let foto = persona.img;
-        let pantalla = persona.pantalla;
-        let procesador = persona.procesador;
-        let cpu = persona.cpu;
-        let grafica = persona.grafica;
+    // Recorrer cada prducto y agregarla al HTML
+    productos.forEach(function(producto) {
+        let nombre = producto.nombre;
+        let precio = producto.precio;
+        let foto = producto.img;
+        let pantalla = producto.pantalla;
+        let procesador = producto.procesador;
+        let cpu = producto.cpu;
+        let grafica = producto.grafica;
+        let codigo = producto.codigo;
 
         // Crear un elemento de párrafo para mostrar los datos
         let card = document.createElement('div');
@@ -107,10 +108,12 @@ fetch('productos.json')
         prodProc.textContent = procesador;
         prodCpu.textContent = cpu;
         prodGraf.textContent = grafica;
-        boton.textContent = "Comparar";
+        boton.textContent = "Comprar";
+        boton.dataset.action = "add";
+        boton.dataset.producto = codigo;
 
         // Agrega los elementos al contenedor
-        personasContainer.appendChild(card);
+        productosContainer.appendChild(card);
         card.appendChild(imagen);
         card.appendChild(prodNom);
         card.appendChild(prodPrec);

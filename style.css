@@ -164,6 +164,20 @@ a{
     border-radius: 21px;
 }
 
+#productoBannerTienda{
+    position: relative;
+    left: -50%;
+    width: 60vw;
+    background-color: #33333300;
+    border-radius: 21px;
+}
+
+#textoMarca{
+    position: relative;
+    bottom: 90%;
+
+}
+
 .product-device2 {
     position: absolute;
     right: -8%;

@@ -7,14 +7,8 @@ for (let i = 0; i < updateBtns.length; i++) {
         let cod_prod = this.dataset.producto //producto es el nombre del dataset data-producto
         let action = this.dataset.action
         console.log("El codigo es: ", cod_prod, "action: ", action)
-
-        //se obtiene usuario desde context
-        let user = this.dataset.usuario
-        if (user == 'AnonymousUser') {
-            addCookieItem(cod_prod, action)
-        } else {
-            updateUserOrder(cod_prod, action)
-        }
+        addCookieItem(cod_prod, action)
+        
     })
 }
 
