@@ -284,7 +284,7 @@ fetch('/static/JS/productos.json')
 
     let cart= document.getElementById("carrito");
     if(cart){
-      fetch('/static/JS/productos.json')
+      fetch('productos.json')
         .then(function(response) {
           return response.json();
         })

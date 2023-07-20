@@ -50,7 +50,7 @@ function getLocalStorageTotalItems(){
 }
 
 function getLocalSotrageTotalAmountValue(name) {
-    return fetch('../static/JS/productos.json')
+    return fetch('productos.json')
         .then(function(response) {
             return response.json();
         })
