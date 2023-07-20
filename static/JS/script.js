@@ -56,7 +56,7 @@ function encuestaUsuario(){
 let productosContainer = document.getElementById('productos');
 
 // Cargar los datos del archivo JSON en index.html
-fetch('/static/JS/productos.json')
+fetch('https://tecafondo.github.io/TecaStore-JS/static/JS/productos.json')
   .then(function(response) {
     return response.json();
   })
