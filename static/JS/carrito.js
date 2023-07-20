@@ -38,29 +38,6 @@ function addCookieItem(productId,action){
 }
 
 
-
-function updateUserOrder(cod_prod, action) {
-    console.log('User is logged in, sending data...')
-
-    let url = '/actualizar_carrito/'
-
-    fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrftoken,
-            },
-            body: JSON.stringify({ 'productId': cod_prod, 'action': action })
-        })
-        .then((response) => {
-            return response.json()
-        })
-        .then((data) => {
-            console.log('data:', data)
-            location.reload()
-        })
-}
-
 function getCookie(name){
     let cookieArr = document.cookie.split(";");
     for(let i = 0; i < cookieArr.length; i++){

@@ -97,6 +97,7 @@ fetch('productos.json')
         boton.classList.add('btn-primary');
         boton.classList.add('btn-comprar');
         boton.classList.add('comprarComparador');
+        boton.classList.add = "editar-carrito";
         
 
         // Se asignan los valores a los elementos
