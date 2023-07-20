@@ -103,6 +103,10 @@ a{
     flex-wrap: wrap;
 }
 
+.producto{
+    margin: 1rem;
+}
+
 .comparador{
     padding-top: 10px;
     font-size: 20px;
@@ -259,6 +263,15 @@ a{
     font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
 }
 
+.venta h3{
+    padding: 20px 0px 40px 0px;
+    font-size: 32px;
+    line-height: 1.08349;
+    font-weight: 550;
+    letter-spacing: -.003em;
+    font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+}
+
 .air{
     width: 450px;
 }
@@ -271,6 +284,12 @@ a{
 
 .comprarComparador{
     border-radius: 30px;
+}
+
+.cart{
+    border-radius: 1rem;
+    color: #414040;
+    border: 1px solid #000000;
 }
 
 
