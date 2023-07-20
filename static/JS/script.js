@@ -65,40 +65,45 @@ fetch('productos.json')
 
     // Recorrer cada prducto y agregarla al HTML
     productos.forEach(function(producto) {
-        let nombre = producto.nombre;
-        let precio = producto.precio;
-        let foto = producto.img;
-        let pantalla = producto.pantalla;
-        let procesador = producto.procesador;
-        let cpu = producto.cpu;
-        let grafica = producto.grafica;
-        let codigo = producto.codigo;
+      let nombre = producto.nombre;
+      let precio = producto.precio;
+      let foto = producto.img;
+      let pantalla = producto.pantalla;
+      let procesador = producto.procesador;
+      let cpu = producto.cpu;
+      let grafica = producto.grafica;
+      let codigo = producto.codigo;
 
-        // Crear un elemento de párrafo para mostrar los datos
-        let card = document.createElement('div');
-        card.classList.add('card'); //Agrega la clase card al div
-        let prodNom = document.createElement('p');
-        prodNom.classList.add('card-text'); //Agrega la clase card-text al párrafo
-        prodNom.classList.add('comparador');//Agrega la clase comparador al párrafo
-        let prodPrec = document.createElement('p');
-        prodPrec.classList.add('precio');//Agrega la clase precio al párrafo
-        let prodPant = document.createElement('p');
-        prodPant.classList.add('pantalla');//Agrega la clase pantalla al párrafo
-        let prodProc = document.createElement('p');
-        prodProc.classList.add('procesador');//Agrega la clase procesador al párrafo
-        let prodCpu = document.createElement('p');
-        prodCpu.classList.add('cpu');//Agrega la clase cpu al párrafo
-        let prodGraf = document.createElement('p');
-        prodGraf.classList.add('grafica');//Agrega la clase grafica al párrafo
+      // Crear un elemento de párrafo para mostrar los datos
+      let card = document.createElement('div');
+      card.classList.add('card'); //Agrega la clase card al div
+      let prodNom = document.createElement('p');
+      prodNom.classList.add('card-text'); //Agrega la clase card-text al párrafo
+      prodNom.classList.add('comparador');//Agrega la clase comparador al párrafo
+      let prodPrec = document.createElement('p');
+      prodPrec.classList.add('precio');//Agrega la clase precio al párrafo
+      let prodPant = document.createElement('p');
+      prodPant.classList.add('pantalla');//Agrega la clase pantalla al párrafo
+      let prodProc = document.createElement('p');
+      prodProc.classList.add('procesador');//Agrega la clase procesador al párrafo
+      let prodCpu = document.createElement('p');
+      prodCpu.classList.add('cpu');//Agrega la clase cpu al párrafo
+      let prodGraf = document.createElement('p');
+      prodGraf.classList.add('grafica');//Agrega la clase grafica al párrafo
 
-        //Se genra boton de comprar
-        let boton = document.createElement('button');
-        boton.classList.add('btn');
-        boton.classList.add('btn-primary');
-        boton.classList.add('btn-comprar');
-        boton.classList.add('comprarComparador');
-        boton.classList.add = "editar-carrito";
-        
+      //Se genra boton de comprar
+      let boton = document.createElement('button');
+      boton.classList.add('btn');
+      boton.classList.add('btn-primary');
+      boton.classList.add('btn-comprar');
+      boton.classList.add('comprarComparador');
+      boton.classList.add = "editar-carrito";
+      boton.addEventListener('click', function() {
+        let cod_prod = this.dataset.producto; // 'producto' es el nombre del dataset data-producto
+        let action = this.dataset.action; // 'action' es el nombre del dataset data-action
+        console.log("El codigo es: ", cod_prod, "action: ", action);
+        addLocalStorageItem(cod_prod, action);
+      })
 
         // Se asignan los valores a los elementos
         prodNom.textContent = nombre;
@@ -123,8 +128,6 @@ fetch('productos.json')
         card.appendChild(prodCpu);
         card.appendChild(prodGraf);
         card.appendChild(boton);
-
-
     });
   })
   .catch(function(error) {
@@ -261,20 +264,21 @@ fetch('productos.json')
     let textoCuerpoModal = document.getElementById('textoCuerpoModal');
     let siguienteModal = document.getElementById('Siguiente');
 
-    cerrarModalBtn.addEventListener('click', function() {
-      miModal.classList.remove('show');
-      miModal.style.display = 'none';
-    });
+    if(cerrarModalBtn){
+      cerrarModalBtn.addEventListener('click', function() {
+        miModal.classList.remove('show');
+        miModal.style.display = 'none';
+      });
+      
+      cerrarModalCruz.addEventListener('click', function() {
+        miModal.classList.remove('show');
+        miModal.style.display = 'none';
+      });
 
-    cerrarModalCruz.addEventListener('click', function() {
-      miModal.classList.remove('show');
-      miModal.style.display = 'none';
-    });
-
-    siguienteModal.addEventListener('click', function() {
-      respuestas=preguntas();
-    });
-  
+      siguienteModal.addEventListener('click', function() {
+        respuestas=preguntas();
+      });
+    }
 
   });
 
@@ -292,8 +296,5 @@ fetch('productos.json')
       
     };
   }
-  
-
-  
 
   
