@@ -31,6 +31,32 @@ function getLocalStorageItem(name) {
     return carrito || {};
 }
 
+function getLocalStorageTotalItems(){
+    let carrito = JSON.parse(localStorage.getItem("carrito"));
+    let total = 0;
+    for (let key in carrito) {
+        total += carrito[key]['cantidad'];
+    }
+    return total;
+}
+
+function getLocalSotrageTotalAmountValue(name) {  
+    fetch('/static/JS/productos.json')
+    .then(function(response) {
+        return response.json();
+      })
+    .then(function(data) {
+        let productos = data.productos;
+        let carrito = JSON.parse(localStorage.getItem(name));
+        let total = 0;
+        for (let key in carrito) {
+            total += carrito[key]['cantidad'];
+            console.log(total);
+        }
+        return total;
+    });
+}
+
 let carrito = getLocalStorageItem("carrito");
 
 if (Object.keys(carrito).length === 0) {
@@ -39,3 +65,6 @@ if (Object.keys(carrito).length === 0) {
 } else {
     console.log(carrito);
 }
+
+console.log(getLocalStorageTotalItems());
+console.log(getLocalSotrageTotalAmountValue("carrito"));

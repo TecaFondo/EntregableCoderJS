@@ -297,4 +297,12 @@ fetch('/static/JS/productos.json')
     };
   }
 
+  let producto= document.getElementById("ProductoCarrito");
+  if(producto){
+    let carrito = getLocalStorageItem("carrito");
+    let carritoContainer = document.getElementById("carritoContainer");
+    let total = 0;
+    
+  }
+
   
