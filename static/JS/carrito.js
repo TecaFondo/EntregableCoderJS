@@ -50,7 +50,7 @@ function getLocalStorageTotalItems(){
 }
 
 function getLocalSotrageTotalAmountValue(name) {
-    return fetch('/static/JS/productos.json')
+    return fetch('../static/JS/productos.json')
         .then(function(response) {
             return response.json();
         })
@@ -102,5 +102,5 @@ getLocalSotrageTotalAmountValue("carrito")
         //console.log("Total:", total);
     })
     .catch(function(error) {
-        console.error("Error:", error);
+        //console.error("Error:", error);
     });
