@@ -284,7 +284,7 @@ fetch('/static/JS/productos.json')
 
     let cart= document.getElementById("carrito");
     if(cart){
-      fetch('productos.json')
+      fetch('/TecaStore-JS/static/JS/productos.json')
         .then(function(response) {
           return response.json();
         })
