@@ -50,7 +50,7 @@ function getLocalStorageTotalItems(){
 }
 
 function getLocalSotrageTotalAmountValue(name) {
-    return fetch('/TecaStore-JS/static/JS/productos.json')
+    return fetch('https://tecafondo.github.io/TecaStore-JS/static/JS/productos.json')
         .then(function(response) {
             return response.json();
         })
