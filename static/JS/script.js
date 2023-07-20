@@ -56,7 +56,7 @@ function encuestaUsuario(){
 let productosContainer = document.getElementById('productos');
 
 // Cargar los datos del archivo JSON en index.html
-fetch('productos.json')
+fetch('/static/JS/productos.json')
   .then(function(response) {
     return response.json();
   })
@@ -109,7 +109,7 @@ fetch('productos.json')
         prodNom.textContent = nombre;
         prodPrec.textContent =  precio;
         let imagen = document.createElement('img');
-        imagen.src = foto;
+        imagen.src = '../'+foto;
         prodPant.textContent = pantalla+'"';
         prodProc.textContent = procesador;
         prodCpu.textContent = cpu;
