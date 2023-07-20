@@ -41,8 +41,8 @@ function encuestaUsuario(){
     datpsUsuario = JSON.stringify(datosUsuario);
     localStorage.setItem("datosUsuario", datosUsuario);
 
-    console.log("Datos del usuario");
-    console.log(datosUsuario);
+    //console.log("Datos del usuario");
+    //console.log(datosUsuario);
     alert(`Gracias por tu tiempo ${nombre}`);
   }
 }*/
@@ -101,7 +101,7 @@ fetch('/static/JS/productos.json')
       boton.addEventListener('click', function() {
         let cod_prod = this.dataset.producto; // 'producto' es el nombre del dataset data-producto
         let action = this.dataset.action; // 'action' es el nombre del dataset data-action
-        console.log("El codigo es: ", cod_prod, "action: ", action);
+        //console.log("El codigo es: ", cod_prod, "action: ", action);
         addLocalStorageItem(cod_prod, action);
       })
 
@@ -131,7 +131,7 @@ fetch('/static/JS/productos.json')
     });
   })
   .catch(function(error) {
-    console.log('Error: ' + error);
+    //console.log('Error: ' + error);
   }); 
 
   function validarEncuesta(respuestas){
@@ -144,7 +144,7 @@ fetch('/static/JS/productos.json')
 
     if(edad != "" && edad != null && (edad >= 0 && edad <= 100)){
       document.getElementById('edad').classList.add('border','border-success');
-      console.log(edad);
+      //console.log(edad);
     }
     else{
       document.getElementById('edad').classList.add('border','border-danger');
@@ -152,7 +152,7 @@ fetch('/static/JS/productos.json')
     }
     if(nombre != "" && nombre != null){
       document.getElementById('nombre').classList.add('border','border-success');
-      console.log(nombre);
+      //console.log(nombre);
     }
     else{
       document.getElementById('nombre').classList.add('border','border-danger');
@@ -160,7 +160,7 @@ fetch('/static/JS/productos.json')
     }
     if(isValidEmail(correo)!=false){
       document.getElementById('correo').classList.add('border','border-success');
-      console.log(correo);
+      //console.log(correo);
     }
     else{
       document.getElementById('correo').classList.add('border','border-danger');
@@ -168,7 +168,7 @@ fetch('/static/JS/productos.json')
     }
     if(productoEsperado != "" && productoEsperado != null){
       document.getElementById('productoEsperado').classList.add('border','border-success');
-      console.log(productoEsperado);
+      //console.log(productoEsperado);
     }
     else{
       document.getElementById('productoEsperado').classList.add('border','border-danger');
@@ -184,7 +184,7 @@ fetch('/static/JS/productos.json')
         "productoEsperado": productoEsperado,
         "nombre": nombre,
       };
-      console.log(datosUsuario);
+      //console.log(datosUsuario);
       localStorage.setItem("datosUsuario", JSON.stringify(datosUsuario));
     }
   }
@@ -249,13 +249,15 @@ fetch('/static/JS/productos.json')
       respuestas.push(nombre.value);
       respuestas.push(correo.value);
       respuestas.push(productoEsperado.value);
-      //console.log(respuestas);
+      ////console.log(respuestas);
 
       validarEncuesta(respuestas);
     
   }
   )};
   
+  
+
 
   document.addEventListener('DOMContentLoaded', function() {
     let cerrarModalBtn = document.getElementById('cerrarModal');
@@ -280,8 +282,93 @@ fetch('/static/JS/productos.json')
       });
     }
 
-  });
+    let cart= document.getElementById("carrito");
+    if(cart){
+      fetch('/static/JS/productos.json')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+          console.log(carrito);
+          
+          if (Object.keys(carrito).length === 0) {
+            let productoCarrito = document.getElementById('ProductoCarrito');
+            let texto = document.createElement('h2');
+            texto.textContent = "No hay productos en el carrito";
+            productoCarrito.appendChild(texto);
+          }
 
+          else{
+            for(let key in carrito){
+              let producto = document.createElement('div');
+              producto.id = "ProductoCarrito";
+              producto.classList.add('producto');
+              producto.classList.add('d-flex');
+                        
+
+              let productos = data.productos;
+              
+              
+              let total = 0;
+              const productoCarrito = productos.find(producto => producto.codigo === key)
+              let nombre = productoCarrito.nombre;
+              let precio = productoCarrito.precio;
+              let foto = productoCarrito.img;
+              let cantidad = carrito[key]["cantidad"];
+
+              let img = document.createElement('img');
+              img.src = '../'+foto;
+              let nombreProducto = document.createElement('p');
+              nombreProducto.textContent = nombre;
+              let precioProducto = document.createElement('p'); 
+              precioProducto.id = "precio";
+              precioProducto.textContent = precio;
+
+              let cantidadProducto = document.createElement('p');
+              cantidadProducto.textContent = "x "+cantidad;
+              let totalProducto = document.createElement('p');
+              totalProducto.textContent = "Total: "+formatearPrecio(cantidad*precio.replace(/\D/g, ''));
+              total += cantidad*precio;
+              let buttonMenos = document.createElement('button');
+              buttonMenos.classList.add('bg-gray');
+              buttonMenos.classList.add('cartButton');
+              buttonMenos.textContent = "-";
+              buttonMenos.dataset.action = "remove";
+              buttonMenos.dataset.producto = key;
+              buttonMenos.addEventListener('click', function() {
+                let cod_prod = this.dataset.producto; // 'producto' es el nombre del dataset data-producto
+                let action = this.dataset.action; // 'action' es el nombre del dataset data-action
+                //console.log("El codigo es: ", cod_prod, "action: ", action);
+                addLocalStorageItem(cod_prod, action);
+              })
+              let buttonMas = document.createElement('button');
+              buttonMas.classList.add('bg-primary');
+              buttonMas.classList.add('cartButton');
+              buttonMas.textContent = "+";
+              buttonMas.dataset.action = "add";
+              buttonMas.dataset.producto = key;
+              buttonMas.addEventListener('click', function() {
+                let cod_prod = this.dataset.producto; // 'producto' es el nombre del dataset data-producto
+                let action = this.dataset.action; // 'action' es el nombre del dataset data-action
+                //console.log("El codigo es: ", cod_prod, "action: ", action);
+                addLocalStorageItem(cod_prod, action);
+              })
+
+              producto.appendChild(img);
+              producto.appendChild(nombreProducto);
+              producto.appendChild(precioProducto);
+              producto.appendChild(cantidadProducto);
+              producto.appendChild(totalProducto);
+              producto.appendChild(buttonMenos);
+              producto.appendChild(buttonMas);
+              cart.appendChild(producto);
+              
+            }
+          }
+        });
+    }
+  });
   
   if(localStorage.getItem("encuesta") == null){
     window.onload = function() {
@@ -296,13 +383,3 @@ fetch('/static/JS/productos.json')
       
     };
   }
-
-  let producto= document.getElementById("ProductoCarrito");
-  if(producto){
-    let carrito = getLocalStorageItem("carrito");
-    let carritoContainer = document.getElementById("carritoContainer");
-    let total = 0;
-    
-  }
-
-  

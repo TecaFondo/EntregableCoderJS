@@ -110,6 +110,8 @@ a{
 .producto{
     margin: 1rem;
     text-overflow: clip;
+    
+    justify-content: space-evenly;
 }
 
 .producto img{
