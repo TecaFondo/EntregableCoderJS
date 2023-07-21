@@ -1,5 +1,3 @@
-const { default: swal } = require("sweetalert");
-
 function  isValidEmail(correo){
   let regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
   if(regex.test(correo)){
