@@ -1,3 +1,5 @@
+const { default: swal } = require("sweetalert");
+
 function  isValidEmail(correo){
   let regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
   if(regex.test(correo)){
@@ -365,6 +367,16 @@ fetch('https://tecafondo.github.io/TecaStore-JS/static/JS/productos.json')
               cart.appendChild(producto);
               
             }
+            let botonPago = document.getElementById('botonPago');
+            botonPago.addEventListener('click', function() {
+              swal("Compra realizada con éxito", "", "success")
+              .then((value) => {
+                localStorage.removeItem("carrito");
+                location.reload();
+              }
+              );
+            });
+            botonPago.classList.remove('disabled');
           }
         });
     }
